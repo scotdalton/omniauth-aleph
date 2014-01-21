@@ -4,6 +4,7 @@ require 'coveralls'
 Coveralls.wear!
 require 'rspec'
 require 'rack/test'
+require 'vcr'
 require 'omniauth'
 require 'omniauth-aleph'
 

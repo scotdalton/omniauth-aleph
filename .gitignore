@@ -16,3 +16,9 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+# Ignore the Gemfile.lock
+/Gemfile.lock
+
+# Ignore .ruby-version
+.ruby-version
