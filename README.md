@@ -5,3 +5,20 @@
 [![Coverage Status](https://coveralls.io/repos/scotdalton/omniauth-aleph/badge.png?branch=master)](https://coveralls.io/r/scotdalton/omniauth-aleph)
 
 Aleph patron login strategy for OmniAuth.
+
+## Installation
+Add to your Gemfile:
+
+    gem 'omniauth-aleph'
+
+Then `bundle install`.
+
+## Usage
+`OmniAuth::Strategies::Aleph` simply makes a call to the Aleph bor_auth X-Service and
+returns a (configurable) selection of attributes from the returned XML.
+
+Use the Aleph strategy as a middleware in your application:
+
+    use OmniAuth::Strategies::Aleph, title: 'My Library's Aleph', 
+      host: 'aleph.library.edu', port: 80, library: 'ADM50', sub_library: 'SUB'
+
