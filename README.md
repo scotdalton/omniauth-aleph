@@ -15,7 +15,7 @@ Then `bundle install`.
 
 ## Usage
 `OmniAuth::Strategies::Aleph` simply makes a call to the Aleph bor_auth X-Service and
-returns a (configurable) selection of attributes from the returned XML.
+returns the attributes from the returned XML.
 
 Use the Aleph strategy as a middleware in your application:
 
