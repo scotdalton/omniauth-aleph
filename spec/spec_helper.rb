@@ -7,7 +7,6 @@ require 'rack/test'
 require 'vcr'
 require 'omniauth'
 require 'omniauth-aleph'
-require 'pry'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
