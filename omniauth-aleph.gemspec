@@ -23,6 +23,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec', '~> 2.14.0'
   gem.add_development_dependency 'rack-test', '~> 0.6.2'
   gem.add_development_dependency 'vcr', '~> 2.8.0'
-
-  gem.add_development_dependency 'rubysl', '~> 2.0' if RUBY_ENGINE = 'rbx'
 end
