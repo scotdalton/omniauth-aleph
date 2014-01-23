@@ -10,10 +10,6 @@ platforms :rbx do
   gem 'rubinius-coverage'
 end
 
-platforms :rbx, :mri do
-  gem 'ox', '~> 2.0.0'
-end
-
-platforms :jruby do
-  gem 'nokogiri', '~> 1.6.1'
-end
+# XML parsing
+gem 'ox', '~> 2.0.0', platform: :ruby
+gem 'nokogiri', '~> 1.6.1', platform: :jruby
