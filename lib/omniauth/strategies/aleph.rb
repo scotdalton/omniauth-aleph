@@ -39,11 +39,7 @@ module OmniAuth
         @raw_info = adaptor.authenticate(username, password)
         super
       rescue OmniAuth::Aleph::Adaptor::AlephError => e
-        if(e.message == "Error in Verification")
-          fail!(:invalid_credentials, e)
-        else
-          fail!(e.message)
-        end
+        fail!(e.message)
       end
 
       def username

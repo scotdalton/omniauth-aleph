@@ -219,7 +219,7 @@ describe "OmniAuth::Strategies::Aleph" do
             it 'should redirect to error page' do
               post('/auth/aleph/callback', {:username => aleph_username, :password => 'INVALID'})
               expect(last_response).to be_redirect
-              expect(last_response.headers['Location']).to match(%r{invalid_credentials})
+              expect(last_response.headers['Location']).to match(%r{Error in Verification})
             end
           end
 
