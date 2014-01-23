@@ -1,7 +1,6 @@
 module OmniAuth
   module Aleph
     require 'faraday'
-    require 'ox'
     require 'multi_xml'
     class Adaptor
       class AlephError < StandardError; end
