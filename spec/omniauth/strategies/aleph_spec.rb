@@ -1,15 +1,11 @@
 require 'spec_helper'
 describe "OmniAuth::Strategies::Aleph" do
-  let(:request) do
-    double('Request', params: {}, cookies: {}, env: {})
-  end
 
   context "when it's improperly configured" do
     let(:config) {{ host: "host" }}
 
     subject(:strategy) do
       OmniAuth::Strategies::Aleph.new(nil, config).tap do |strategy|
-        strategy.stub(:request) { request }
         strategy.stub(:username) { aleph_username }
         strategy.stub(:password) { aleph_password }
       end
@@ -39,7 +35,6 @@ describe "OmniAuth::Strategies::Aleph" do
       # First argument is the app, which gets called with env,
       # i.e. app.call(env), so fake it with a stabby lambda
       OmniAuth::Strategies::Aleph.new(->(env) {}, config).tap do |strategy|
-        strategy.stub(:request) { request }
         strategy.stub(:username) { aleph_username }
         strategy.stub(:password) { aleph_password }
         strategy.stub(:env) { {} }
