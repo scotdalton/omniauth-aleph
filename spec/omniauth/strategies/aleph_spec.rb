@@ -239,6 +239,7 @@ describe "OmniAuth::Strategies::Aleph" do
           expect(auth_hash.info.nickname).to eq('USERNAME')
           expect(auth_hash.info.email).to eq('username@library.edu')
           expect(auth_hash.info.phone).to be_nil
+          expect(auth_hash.extra.raw_info.bor_auth.z303.z303_id).to eq('USERNAME')
         end
       end
     end
