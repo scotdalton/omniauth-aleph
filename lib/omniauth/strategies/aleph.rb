@@ -6,7 +6,7 @@ module OmniAuth
       include OmniAuth::Strategy
 
       # Set defaults for options
-      option :title, "Aleph Authentication" #default title for authentication form
+      option :title, "Aleph Authentication"
       option :scheme, 'http'
       option :port, 80
 
@@ -27,24 +27,37 @@ module OmniAuth
 
       def request_phase
         OmniAuth::Aleph::Adaptor.validate @options
-        f = OmniAuth::Form.new(title: options[:title], url: callback_path)
-        f.text_field 'Login', 'username'
-        f.password_field 'Password', 'password'
-        f.button "Sign In"
-        f.to_response
+        OmniAuth::Form.build(title: options[:title], url: callback_path) do |f|
+          f.text_field 'Login', 'username'
+          f.password_field 'Password', 'password'
+        end.to_response
       end
 
       def callback_phase
         return fail!(:missing_credentials) if missing_credentials?
         adaptor = OmniAuth::Aleph::Adaptor.new(@options)
-        @raw_info = adaptor.authenticate(request['username'], request['password'])
+        @raw_info = adaptor.authenticate(username, password)
+        super
       rescue OmniAuth::Aleph::Adaptor::AlephError => e
-        fail!(e.message)
+        if(e.message == "Error in Verification")
+          fail!(:invalid_credentials, e)
+        else
+          fail!(e.message)
+        end
       end
 
+      def username
+        @username ||= request['username']
+      end
+      private :username
+
+      def password
+        @password ||= request['password']
+      end
+      private :password
+
       def missing_credentials?
-        request['username'].nil? || request['username'].empty? || 
-          request['password'].nil? || request['password'].empty?
+        username.nil? || username.empty? || password.nil? || password.empty?
       end
       private :missing_credentials?
     end

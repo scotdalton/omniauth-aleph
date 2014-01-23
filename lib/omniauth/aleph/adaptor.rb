@@ -9,8 +9,6 @@ module OmniAuth
       # List of keys, all are required.
       KEYS = [:scheme, :host, :port, :library, :sub_library]
 
-      attr_reader :url, :response, :xml, :json
-
       def self.validate(configuration={})
         message = []
         KEYS.each do |key|
@@ -31,15 +29,14 @@ module OmniAuth
       end
 
       def authenticate(username, password)
-        @url = bor_auth_url + "&bor_id=#{username}&verification=#{password}"
-        @response = Faraday.get @url
+        url = bor_auth_url + "&bor_id=#{username}&verification=#{password}"
+        response = Faraday.get url
         # If we get a successful response AND we are looking at XML and we have a body
-        if @response.status == 200 && @response.headers["content-type"] == 'text/xml' && response.body
-          @xml = response.body
-          @json = MultiXml.parse(@xml)
-          if @json["bor_auth"] && (error = @json["bor_auth"]["error"]).nil?
-            return @json
-          elsif @json["bor_auth"].nil?
+        if response.status == 200 && response.headers["content-type"] == 'text/xml' && response.body
+          json = MultiXml.parse(response.body)
+          if json["bor_auth"] && (error = json["bor_auth"]["error"]).nil?
+            return json
+          elsif json["bor_auth"].nil?
             raise AlephError.new("Aleph responded, but it's not a response I understand.")
           else
             raise AlephError.new(error)
