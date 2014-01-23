@@ -1,4 +1,5 @@
 # OmniAuth Aleph
+[![Gem Version](https://badge.fury.io/rb/omniauth-aleph.png)](http://badge.fury.io/rb/omniauth-aleph)
 [![Build Status](https://api.travis-ci.org/scotdalton/omniauth-aleph.png?branch=master)](https://travis-ci.org/scotdalton/omniauth-aleph)
 [![Dependency Status](https://gemnasium.com/scotdalton/omniauth-aleph.png)](https://gemnasium.com/scotdalton/omniauth-aleph)
 [![Code Climate](https://codeclimate.com/github/scotdalton/omniauth-aleph.png)](https://codeclimate.com/github/scotdalton/omniauth-aleph)
