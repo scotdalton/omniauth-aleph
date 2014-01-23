@@ -8,7 +8,6 @@ require 'vcr'
 require 'faraday'
 require 'omniauth'
 require 'omniauth-aleph'
-require 'pry'
 
 def aleph_host
   @aleph_host ||= (ENV['ALEPH_HOST'] || 'aleph.library.edu')
