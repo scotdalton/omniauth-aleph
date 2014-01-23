@@ -17,7 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'omniauth', '~> 1.2.0'
   gem.add_runtime_dependency 'faraday', '~> 0.9.0'
-  gem.add_runtime_dependency 'ox', '~> 2.0.0'
   gem.add_runtime_dependency 'multi_xml', '~> 0.5.0'
 
   gem.add_development_dependency 'rake', '~> 10.1.0'

@@ -9,3 +9,11 @@ platforms :rbx do
   gem 'json', '~> 1.8.1'
   gem 'rubinius-coverage'
 end
+
+platforms :rbx, :mri do
+  gem 'ox', '~> 2.0.0'
+end
+
+platforms :jruby do
+  gem 'nokogiri', '~> 1.6.1'
+end
