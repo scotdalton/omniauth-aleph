@@ -43,52 +43,50 @@ describe "OmniAuth::Strategies::Aleph" do
     end
 
     describe '#options' do
-      it 'should not error' do
-        expect{ strategy.options }.not_to raise_error
-      end
-
       subject(:options) { strategy.options }
 
+      it { should_not raise_error }
+
       describe'#name' do
-        it 'should equal "Aleph"' do
-          expect(options.name).to eq("aleph")
-        end
+        subject { options.name }
+        it { should_not be_nil }
+        it { should eq("aleph") }
       end
 
       describe '#title' do
-        it 'should equal "Aleph Authentication"' do
-          expect(options.title).to eq("Aleph Authentication")
-        end
+        subject { options.title }
+        it { should_not be_nil }
+        it { should eq("Aleph Authentication") }
       end
 
       describe '#scheme' do
-        it 'should equal "http"' do
-          expect(options.scheme).to eq("http")
-        end
+        subject { options.scheme }
+        it { should_not be_nil }
+        it { should eq("http") }
       end
 
       describe '#host' do
-        it 'should be the aleph host' do
-          expect(options.host).to eq(aleph_host)
-        end
+        subject { options.host }
+        it { should_not be_nil }
+        it { should eq(aleph_host) }
       end
 
       describe '#port' do
-        it 'should be 80' do
-          expect(options.port).to be(80)
-        end
+        subject { options.port }
+        it { should_not be_nil }
+        it { should be(80) }
       end
 
       describe '#library' do
-        it 'should be the aleph library' do
-          expect(options.library).to eq(aleph_library)
-        end
+        subject { options.library }
+        it { should_not be_nil }
+        it { should eq(aleph_library) }
       end
 
       describe '#sub_library' do
-        it 'should be the aleph sub_library' do
-          expect(options.sub_library).to eq(aleph_sub_library)
-        end
+        subject { options.sub_library }
+        it { should_not be_nil }
+        it { should eq(aleph_sub_library) }
       end
     end
 
