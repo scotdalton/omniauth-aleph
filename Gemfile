@@ -12,5 +12,5 @@ platforms :rbx do
 end
 
 # XML parsing
-gem 'ox', '~> 2.0.0', platform: :ruby
+gem 'ox', '~> 2.1.0', platform: :ruby
 gem 'nokogiri', '~> 1.6.1', platform: :jruby
