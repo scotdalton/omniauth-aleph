@@ -31,7 +31,7 @@ module OmniAuth
         url = bor_auth_url + "&bor_id=#{username}&verification=#{password}"
         response = Faraday.get url
         # If we get a successful response AND we are looking at XML and we have a body
-        if response.status == 200 && response.headers["content-type"] == 'text/xml' && response.body
+        if response.status == 200 && response.headers["content-type"].include?('text/xml') && response.body
           json = MultiXml.parse(response.body)
           if json["bor_auth"] && (error = json["bor_auth"]["error"]).nil?
             return json
