@@ -6,7 +6,7 @@ gem 'pry', group: :development, platforms: [:jruby, :rbx, :mri]
 
 platforms :rbx do
   gem 'rubysl', '~> 2.0' # if using anything in the ruby standard library
-  gem 'json', '~> 1.8.1'
+  gem 'json', '~> 2.1'
   gem 'rubinius-coverage'
 end
 
