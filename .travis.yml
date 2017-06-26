@@ -2,5 +2,5 @@ language: ruby
 rvm:
   - 2.3
   - jruby-head
-  - rbx
+  - rbx-3.81
 sudo: false
