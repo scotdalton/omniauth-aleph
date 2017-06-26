@@ -15,13 +15,13 @@ Gem::Specification.new do |gem|
   gem.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency 'omniauth', '~> 1.2.0'
-  gem.add_runtime_dependency 'faraday', '~> 0.9.0'
-  gem.add_runtime_dependency 'multi_xml', '~> 0.5.0'
+  gem.add_runtime_dependency 'omniauth', '~> 1.2'
+  gem.add_runtime_dependency 'faraday', '~> 0.9'
+  gem.add_runtime_dependency 'multi_xml', '~> 0.5'
 
-  gem.add_development_dependency 'rake', '~> 10.1.0'
-  gem.add_development_dependency 'rspec', '~> 2.14.0'
-  gem.add_development_dependency 'rack-test', '~> 0.6.2'
-  gem.add_development_dependency 'webmock', '~> 1.17.0'
-  gem.add_development_dependency 'vcr', '~> 2.8.0'
+  gem.add_development_dependency 'rake', '>= 10.1.0', '~> 11'
+  gem.add_development_dependency 'rspec', '>= 2.14.0', '< 4'
+  gem.add_development_dependency 'rack-test', '~> 0.6'
+  gem.add_development_dependency 'webmock', '>= 1.17.0', '< 4'
+  gem.add_development_dependency 'vcr', '>= 2.8.0', '< 4'
 end
