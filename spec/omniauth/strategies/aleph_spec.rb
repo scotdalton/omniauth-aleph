@@ -6,8 +6,8 @@ describe "OmniAuth::Strategies::Aleph" do
 
     subject(:strategy) do
       OmniAuth::Strategies::Aleph.new(nil, config).tap do |strategy|
-        strategy.stub(:username) { aleph_username }
-        strategy.stub(:password) { aleph_password }
+        allow(strategy).to receive(:username).and_return(aleph_username)
+        allow(strategy).to receive(:password).and_return(aleph_password)
       end
     end
 
@@ -35,58 +35,60 @@ describe "OmniAuth::Strategies::Aleph" do
       # First argument is the app, which gets called with env,
       # i.e. app.call(env), so fake it with a stabby lambda
       OmniAuth::Strategies::Aleph.new(->(env) {}, config).tap do |strategy|
-        strategy.stub(:username) { aleph_username }
-        strategy.stub(:password) { aleph_password }
-        strategy.stub(:env) { {} }
-        strategy.stub(:fail!) { true }
+        allow(strategy).to receive(:username).and_return(aleph_username)
+        allow(strategy).to receive(:password).and_return(aleph_password)
+        allow(strategy).to receive(:env).and_return({})
+        allow(strategy).to receive(:fail!).and_return(true)
       end
     end
 
     describe '#options' do
       subject(:options) { strategy.options }
 
-      it { should_not raise_error }
+      it 'should not raise an error' do
+        expect { subject }.to_not raise_error
+      end
 
       describe'#name' do
         subject { options.name }
-        it { should_not be_nil }
-        it { should eq("aleph") }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to eq("aleph") }
       end
 
       describe '#title' do
         subject { options.title }
-        it { should_not be_nil }
-        it { should eq("Aleph Authentication") }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to eq("Aleph Authentication") }
       end
 
       describe '#scheme' do
         subject { options.scheme }
-        it { should_not be_nil }
-        it { should eq("http") }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to eq("http") }
       end
 
       describe '#host' do
         subject { options.host }
-        it { should_not be_nil }
-        it { should eq(aleph_host) }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to eq(aleph_host) }
       end
 
       describe '#port' do
         subject { options.port }
-        it { should_not be_nil }
-        it { should be(80) }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to be(80) }
       end
 
       describe '#library' do
         subject { options.library }
-        it { should_not be_nil }
-        it { should eq(aleph_library) }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to eq(aleph_library) }
       end
 
       describe '#sub_library' do
         subject { options.sub_library }
-        it { should_not be_nil }
-        it { should eq(aleph_sub_library) }
+        it { is_expected.to_not be_nil }
+        it { is_expected.to eq(aleph_sub_library) }
       end
     end
 
@@ -99,9 +101,9 @@ describe "OmniAuth::Strategies::Aleph" do
     describe "#callback_phase", vcr: { cassette_name: "valid" } do
       context "when the credentials are missing" do
         before(:each) do |example|
-          strategy.stub(:username) { "" }
-          strategy.stub(:password) { "" }
-        end          
+          allow(strategy).to receive(:username).and_return("")
+          allow(strategy).to receive(:password).and_return("")
+        end
 
         it 'shouldn\'t raise an error' do
           expect{ strategy.callback_phase }.not_to raise_error
@@ -115,14 +117,14 @@ describe "OmniAuth::Strategies::Aleph" do
 
       context "when the credentials are included" do
         before(:each) do
-          strategy.stub(:username) { aleph_username }
-          strategy.stub(:password) { aleph_password }
-        end          
+          allow(strategy).to receive(:username).and_return(aleph_username)
+          allow(strategy).to receive(:password).and_return(aleph_password)
+        end
 
         it 'shouldn\'t raise an error' do
           expect{ strategy.callback_phase }.not_to raise_error
         end
- 
+
         it 'shouldn\'t fail!' do
           strategy.callback_phase
           expect(strategy).not_to have_received(:fail!)
@@ -236,7 +238,7 @@ describe "OmniAuth::Strategies::Aleph" do
           expect(auth_hash.info.name).to eq('USERNAME, TEST-RECORD')
           expect(auth_hash.info.nickname).to eq('USERNAME')
           expect(auth_hash.info.email).to eq('username@library.edu')
-          expect(auth_hash.info.phone).to be_nil
+          expect(auth_hash.info.phone).to be_blank
           expect(auth_hash.extra.raw_info.bor_auth.z303.z303_id).to eq('USERNAME')
         end
       end
