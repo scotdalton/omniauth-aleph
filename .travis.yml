@@ -1,6 +1,6 @@
 language: ruby
 rvm:
   - 2.3
-  - jruby
+  - jruby-head
   - rbx
 sudo: false
