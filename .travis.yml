@@ -1,5 +1,5 @@
 language: ruby
 rvm:
   - 2.3
-  - jruby-head
+  - jruby-9.1.12.0
 sudo: false
